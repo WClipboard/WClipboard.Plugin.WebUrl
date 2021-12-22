@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WClipboard.Plugin.LinkedContent.WebUrl"
+                    xmlns:t="clr-namespace:WClipboard.Core.WPF.Themes;assembly=WClipboard.Core.WPF">
+    <DataTemplate x:Key="WebUrlView" DataType="{x:Type local:WebUrlViewModel}">
+        <Button x:Name="WebUrlButton" Command="{x:Static local:WebUrlViewModel.OpenCommand}" CommandParameter="{Binding Model.Url}" Cursor="Hand" Style="{StaticResource ClearButton}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ToolTip="{Binding Model.Url}" MaxHeight="90">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Image}" Margin="3" Stretch="Uniform" MaxWidth="200" MinHeight="40" MaxHeight="{Binding Image.PixelHeight, Mode=OneWay}" VerticalAlignment="Top" />
+                <TextBlock x:Name="titleTextBlock" Grid.Column="1" Grid.Row="0" Text="{Binding Title}" FontWeight="Bold" Margin="3" TextDecorations="Underline" TextWrapping="Wrap" VerticalAlignment="Top">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=WebUrlButton}" Value="True">
+                                    <DataTrigger.Setters>
+                                        <Setter Property="Foreground" Value="{t:FromPalette Primary}" />
+                                    </DataTrigger.Setters>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Description}" Margin="3" TextWrapping="Wrap" Foreground="{t:FromPalette GrayBI}" Visibility="{Binding Description, Converter={StaticResource VisibileIfNotNullConverter}}" VerticalAlignment="Top" />
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Text="{Binding Redirect, StringFormat='Redirects to {0}'}" Margin="3" TextWrapping="Wrap" Foreground="{t:FromPalette GrayBI}" FontSize="10" Visibility="{Binding Redirect, Converter={StaticResource VisibileIfNotNullConverter}}" VerticalAlignment="Top" />
+            </Grid>
+        </Button>
+    </DataTemplate>
+</ResourceDictionary>

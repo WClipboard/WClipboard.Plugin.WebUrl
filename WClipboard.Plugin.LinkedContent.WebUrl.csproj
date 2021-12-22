@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+	<Platforms>x64</Platforms>
+	<Company>WClipboard</Company>
+	<Product>WClipboard</Product>
+	<Authors>Wibren Wiersma</Authors>
+	<Copyright>Wibren Wiersma 2021</Copyright>
+	<NeutralLanguage>en</NeutralLanguage>
+    <SupportedOSPlatformVersion>10.0.18362.0</SupportedOSPlatformVersion>
+    <RepositoryUrl>https://github.com/WClipboard/WClipboard.Plugin.WebUrl</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyVersion>0.2.2</AssemblyVersion>
+    <FileVersion>0.2.2</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\WClipboard\WClipboard.Plugin\WClipboard.Plugin.csproj">
+        <Private>false</Private>
+        <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="del /Q /F $(OutDir)WClipboard.Core.*&#xD;&#xA;del /Q /F $(OutDir)WClipboard.Windows.*" />
+  </Target>
+</Project>

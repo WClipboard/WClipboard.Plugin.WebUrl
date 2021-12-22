@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "WClipboard.Plugin.LinkedContent.WebUrl": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\wibre\\OneDrive\\ProgrammeerShares\\VisualStudio\\WClipboard\\WClipboard.App\\bin\\x64\\Debug\\net6.0-windows10.0.18362.0\\WClipboard.exe",
+      "commandLineArgs": "/nodebug /pluginDev \"$(TargetPath)\""
+    }
+  }
+}
